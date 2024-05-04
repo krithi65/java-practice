@@ -1,0 +1,79 @@
+import java.util.Scanner;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        House[] hr = new House[n];
+        for (int i = 0; i < hr.length; i++) {
+            int id = sc.nextInt();
+            sc.nextLine();
+            String name = sc.nextLine();
+            int price = sc.nextInt();
+            sc.nextLine();
+            hr[i] = new House(id, name, price);
+        }
+        double avg = findingAverage(hr);
+        if (avg > 0) {
+            System.out.println(avg);
+        } else {
+            System.out.println("null");
+        }
+    }
+
+    public static double findingAverage(House[] hr) {
+        int count = 0;
+        double total = 0;
+        double avg = 0;
+        for (int i = 0; i < hr.length; i++) {
+            total = total + hr[i].getPrice();
+            count++;
+        }
+        avg = total / count;
+        if (avg > 0){
+            return avg;
+        }
+        else {
+            return 0;
+        }
+    }
+}
+
+class House {
+    private int id;
+    private String name;
+    private int price;
+
+    public House(int id, String name, int price) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+}
