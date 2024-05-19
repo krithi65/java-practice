@@ -1,0 +1,90 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        Player[] play = new Player[4];
+        for(int i=0;i<play.length;i++)
+        {
+            int playerId=sc.nextInt();sc.nextLine();
+            String skill=sc.nextLine();
+            String level=sc.nextLine();
+            int points=sc.nextInt();sc.nextLine();
+            play[i]=new Player(playerId,skill,level,points);
+        }
+        String ski = sc.nextLine();
+        String lev = sc.nextLine();
+        int sum=findPointsForGivenSkill(play,ski);
+        if(sum!=0)
+        {
+            System.out.println(sum);
+            
+        }
+        else
+        {
+            System.out.println("null");
+        }
+        int ans = getPlayerBasedOnLevel(play,lev,ski);
+        if(ans!=0)
+        {
+            System.out.println(ans);
+        }
+        else
+        {
+            System.out.println("null");
+        }
+        
+    }
+    public static int findPointsForGivenSkill(Player[] play,String ski)
+    {
+        
+        int sum=0;
+        for(int i=0;i<play.length;i++)
+        {
+            if(play[i].getSkill().equalsIgnoreCase(ski))
+            {
+                sum=sum+play[i].getPoints();
+            }
+        }return sum;
+    }
+    public static int getPlayerBasedOnLevel(Player[] play,String lev,String ski)
+    {
+        for(int i =0;i<play.length;i++ )
+        {
+            if(play[i].getLevel().equalsIgnoreCase(lev) && play[i].getSkill().equalsIgnoreCase(ski) && play[i].getPoints()>=20)
+            {
+                return play[i].getPlayerId();
+            }
+        }return 0;
+    }
+}
+
+class Player{
+        private int playerId;  
+        private String skill ; 
+        private String level ;
+        private int points ;
+        public Player(int playerId,String skill,String level,int points)
+        {
+            this.playerId=playerId;
+            this.skill=skill;
+            this.level=level;
+            this.points=points;
+        }
+        public int getPlayerId()
+        {
+            return playerId;
+        }
+        public String getSkill()
+        {
+            return skill;
+        }
+        public String getLevel()
+        {
+            return level;
+        }
+        public int getPoints()
+        {
+            return points;
+        }
+        
+}
